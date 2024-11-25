@@ -12,11 +12,16 @@ function App() {
   function handleAddTheme(newColor) {
     setThemes([...themes, { id: uid(), ...newColor }]);
   }
+
+  function handleDeleteColor(id) {
+    setThemes((prevThemes) => prevThemes.filter((color) => color.id !== id));
+  }
+
   return (
     <>
       <h1>Theme Creator</h1>
       <ColorForm onAddTheme={handleAddTheme} />
-      <ColorsSection colors={themes} />
+      <ColorsSection colors={themes} onDeleteColor={handleDeleteColor} />
     </>
   );
 }
