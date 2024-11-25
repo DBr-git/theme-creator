@@ -1,17 +1,30 @@
 import "./ColorForm.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function ColorForm({ onAddTheme }) {
+export default function ColorForm({ onAddTheme, existingColor }) {
+  const [role, setRole] = useState("");
   const [hexValue, setHexValue] = useState("#000000");
   const [contrastHexValue, setContrastHexValue] = useState("#FFFFFF");
 
+  useEffect(() => {
+    console.log("existingColor changed:", existingColor);
+    if (existingColor) {
+      setRole(existingColor.role);
+      setHexValue(existingColor.hex);
+      setContrastHexValue(existingColor.contrastText);
+    }
+  }, [existingColor]);
+
   function handleSubmit(event) {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
+    const formData = { role, hex: hexValue, contrastText: contrastHexValue };
 
-    onAddTheme(data);
+    onAddTheme(formData, existingColor ? existingColor.id : null);
+
     event.target.reset();
+    setHexValue("#000000");
+    setContrastHexValue("#FFFFFF");
+    setRole("");
   }
 
   function isValidHex(hex) {
@@ -43,7 +56,13 @@ export default function ColorForm({ onAddTheme }) {
   return (
     <form className="color-card--form" onSubmit={handleSubmit}>
       <label htmlFor="role-input">Role</label>
-      <input type="text" name="role" id="role-input"></input>
+      <input
+        type="text"
+        name="role"
+        id="role-input"
+        value={role}
+        onChange={(e) => setRole(e.target.value)}
+      ></input>
       <label htmlFor="hexText-input">Hex</label>
       <div className="color-input--wrapper">
         <input
@@ -80,7 +99,9 @@ export default function ColorForm({ onAddTheme }) {
           onChange={handleContrastHexChange}
         ></input>
       </div>
-      <button type="submit">Add Color</button>
+      <button type="submit">
+        {existingColor ? "Save Changes" : "Add Color"}
+      </button>
     </form>
   );
 }
