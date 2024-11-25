@@ -1,8 +1,8 @@
 import "./Color.css";
-import DeleteButton from "../DeleteButton/DeleteButton";
+import Button from "../Button/Button";
 import { useState } from "react";
 
-export default function Color({ color, onDeleteColor }) {
+export default function Color({ color, onDeleteColor, onHandleEdit }) {
   const [showConfirm, setShowConfirm] = useState(false);
 
   function handleConfirm() {
@@ -36,7 +36,10 @@ export default function Color({ color, onDeleteColor }) {
           <button onClick={handleCancel}>No</button>
         </div>
       ) : (
-        <DeleteButton onDeleteColor={handleConfirm} /> // Show the delete button initially
+        <div className="button-container">
+          <Button onClick={handleConfirm} buttonContent={"Delete"} />
+          <Button onClick={() => onHandleEdit(color)} buttonContent={"Edit"} />
+        </div>
       )}
     </div>
   );
