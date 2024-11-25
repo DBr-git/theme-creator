@@ -3,7 +3,7 @@ import "./ColorSection.css";
 
 export default function ColorsSection({ colors, onDeleteColor }) {
   return (
-    <>
+    <div className="colors-container">
       {colors.length > 0 ? (
         colors.map((color) => (
           <Color key={color.id} color={color} onDeleteColor={onDeleteColor} />
@@ -14,6 +14,6 @@ export default function ColorsSection({ colors, onDeleteColor }) {
         </h3>
       )}
       ;
-    </>
+    </div>
   );
 }
