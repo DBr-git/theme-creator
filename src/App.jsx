@@ -5,9 +5,12 @@ import ColorForm from "./Components/ColorForm/ColorForm";
 import { useState } from "react";
 import { uid } from "uid";
 import ColorsSection from "./Components/ColorSection/ColorSection";
+import useLocalStorageState from "use-local-storage-state";
 
 function App() {
-  const [themes, setThemes] = useState(initialColors);
+  const [themes, setThemes] = useLocalStorageState("themes", {
+    defaultValue: initialColors,
+  });
   const [editingColor, setEditingColor] = useState(null);
 
   function handleAddTheme(newColor, colorId = null) {
