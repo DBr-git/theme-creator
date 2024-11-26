@@ -1,6 +1,7 @@
 import "./Color.css";
 import Button from "../Button/Button";
 import { useState } from "react";
+import CopyToClipboard from "../CopyToClipboard/CopyToClipboard";
 
 export default function Color({ color, onDeleteColor, onHandleEdit }) {
   const [showConfirm, setShowConfirm] = useState(false);
@@ -26,7 +27,10 @@ export default function Color({ color, onDeleteColor, onHandleEdit }) {
         color: color.contrastText,
       }}
     >
-      <h3 className="color-card-headline">{color.hex}</h3>
+      <div className="clipboard-wrapper">
+        <h3 className="color-card-headline">{color.hex}</h3>
+        <CopyToClipboard hexCode={color.hex} />
+      </div>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
       {showConfirm ? (

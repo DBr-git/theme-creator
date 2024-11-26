@@ -1,0 +1,15 @@
+.copyButton {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.button-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: black;
+}
+
+.button-wrapper p {
+  margin-right: 0.5rem;
+}
