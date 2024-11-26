@@ -33,8 +33,6 @@ function App() {
     setEditingColor(color);
   }
 
-  console.log("editingColor in App:", editingColor);
-
   return (
     <>
       <h1>Theme Creator</h1>

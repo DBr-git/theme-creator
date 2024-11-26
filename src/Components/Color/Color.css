@@ -40,3 +40,8 @@
   align-self: flex-end;
   gap: 5px;
 }
+
+.clipboard-wrapper {
+  display: flex;
+  gap: 5px;
+}
