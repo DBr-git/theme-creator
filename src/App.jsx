@@ -31,6 +31,10 @@ function App() {
 
   function handleEdit(color) {
     setEditingColor(color);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }
 
   return (
