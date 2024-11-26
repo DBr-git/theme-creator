@@ -7,7 +7,6 @@ export default function ColorForm({ onAddTheme, existingColor }) {
   const [contrastHexValue, setContrastHexValue] = useState("#FFFFFF");
 
   useEffect(() => {
-    console.log("existingColor changed:", existingColor);
     if (existingColor) {
       setRole(existingColor.role);
       setHexValue(existingColor.hex);
