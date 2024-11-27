@@ -9,8 +9,14 @@ export default function ColorForm({ onAddTheme, existingColor }) {
   useEffect(() => {
     if (existingColor) {
       setRole(existingColor.role);
-      setHexValue(existingColor.hex);
-      setContrastHexValue(existingColor.contrastText);
+      setHexValue(
+        isValidHex(existingColor.hex) ? existingColor.hex : "#000000"
+      );
+      setContrastHexValue(
+        isValidHex(existingColor.contrastText)
+          ? existingColor.contrastText
+          : "#FFFFFF"
+      );
     }
   }, [existingColor]);
 
@@ -77,7 +83,7 @@ export default function ColorForm({ onAddTheme, existingColor }) {
           name="hex"
           className="color-input"
           value={isValidHex(hexValue) ? hexValue : "#000000"}
-          onChange={handleHexChange}
+          onChange={(e) => setHexValue(e.target.value)}
         ></input>
       </div>
       <label htmlFor="contrastText-input">Contrast Text</label>
@@ -95,7 +101,7 @@ export default function ColorForm({ onAddTheme, existingColor }) {
           name="contrastText"
           className="color-input"
           value={isValidHex(contrastHexValue) ? contrastHexValue : "#FFFFFF"}
-          onChange={handleContrastHexChange}
+          onChange={(e) => setContrastHexValue(e.target.value)}
         ></input>
       </div>
       <button type="submit">
