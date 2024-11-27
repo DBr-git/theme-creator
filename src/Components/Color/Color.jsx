@@ -2,9 +2,11 @@ import "./Color.css";
 import Button from "../Button/Button";
 import { useState } from "react";
 import CopyToClipboard from "../CopyToClipboard/CopyToClipboard";
+import ContrastScore from "../ContrastScore/ContrastScore";
 
 export default function Color({ color, onDeleteColor, onHandleEdit }) {
   const [showConfirm, setShowConfirm] = useState(false);
+  const [contrastError, setContrastError] = useState(false);
 
   function handleConfirm() {
     setShowConfirm(true);
@@ -33,6 +35,9 @@ export default function Color({ color, onDeleteColor, onHandleEdit }) {
       </div>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
+      {!contrastError && (
+        <ContrastScore color={color} onError={() => setContrastError(true)} />
+      )}
       {showConfirm ? (
         <div className="confirmation">
           <p>Are you sure?</p>

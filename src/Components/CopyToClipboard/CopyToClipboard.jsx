@@ -1,5 +1,3 @@
-import clipboardCheck from "../../../public/clipboard-check.svg";
-import clipboardCopy from "../../../public/clipboard-copy.svg";
 import "./CopyToClipboard.css";
 import { useState, useEffect } from "react";
 
@@ -27,14 +25,14 @@ export default function CopyToClipboard({ hexCode }) {
       {copied ? (
         <div className="button-wrapper">
           <button className="copyButton">
-            <img src={clipboardCheck} alt="Copied" />
+            <img src="/clipboard-check.svg" alt="Copied" />
           </button>
           <p>Copied to clipboard!</p>
         </div>
       ) : (
         <div className="button-wrapper">
           <button className="copyButton" onClick={handleCopyToClipboard}>
-            <img src={clipboardCopy} alt="Copy" />
+            <img src="/clipboard-copy.svg" alt="Copy" />
           </button>
         </div>
       )}
